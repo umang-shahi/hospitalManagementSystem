@@ -4,8 +4,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import { dbConnection } from "./database/databaseConnection.js";
-import { sendMessage } from "./controller/messageController.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import messageRouter from "./router/messageRouter.js";
+import userRouter from "./router/userRouter.js";
 
 const app = express();
 
@@ -29,7 +30,8 @@ app.use(
   })
 );
 
-app.use("/api/v1/message", sendMessage);
+app.use("/api/v1/message", messageRouter);
+app.use("/api/v1/user", userRouter);
 
 dbConnection();
 
