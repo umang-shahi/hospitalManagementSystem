@@ -14,3 +14,11 @@ export const sendMessage = catchAsyncErrors(async (req, res, next) => {
     message: "Message send successfully!",
   });
 });
+
+export const getAllMessages = catchAsyncErrors(async(req,res,nest)=>{
+  const messages = await Message.find();
+  res.status(200).json({
+    success:true,
+    messages,
+  })
+})
